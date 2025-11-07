@@ -4,7 +4,7 @@ class BinTreeNodeInt {
     BinTreeNodeInt left; // izquierda
     BinTreeNodeInt right; // derecha
 
-    BinTreeNodeInt(int value) {
+    BinTreeNodeInt(int value) {// Constructor
         data = value;
         left = null;
         right = null;
@@ -23,7 +23,9 @@ public class BinTreeInt {
         root = insertRec(root, value);
     }
 
-    private BinTreeNodeInt insertRec(BinTreeNodeInt node, int value) {
+    // Valida el nodo, si no tienen nada lo coloca ahí, sino valida el siguiente nodo (hoja), dependiendo del valor
+    // que tenga left o right y como están nulos lo cola ahí
+    private BinTreeNodeInt insertRec(BinTreeNodeInt node, int value) { 
         if (node == null) {
             return new BinTreeNodeInt(value);
         } else {
@@ -38,7 +40,7 @@ public class BinTreeInt {
 
     public void inOrderTraversal() {
         System.out.print("inOrderTraversal: ");
-        inOrderTraversalRec(root);
+        inOrderTraversalRec(root); //Llama al nodo (raiz)
         System.out.println();
     }
 
@@ -54,10 +56,15 @@ public class BinTreeInt {
         System.out.println();
     }
 
-    private void inOrderTraversalRec(BinTreeNodeInt node) {
+    //
+    private void inOrderTraversalRec(BinTreeNodeInt node) { //Valida 4 izquierda (2)
         if (node != null) {
             inOrderTraversalRec(node.left);
-            System.out.print(node.data + " ");
+            //Valida 2 izquierda (1), no hay nada, imprime el nodo (1)
+            //valida der de (1) nada, termina e imprime el nodo (2)
+            //Valida 2 derecha (3), luego izq de este, imprime y derecha
+            //Termina el izq de 4 y lo imprime, sigue con la derecha, igual validando izq, imprime, derecha
+            System.out.print(node.data + " "); //Imprime el nodo despues de validar izq
             inOrderTraversalRec(node.right);
         }
     }
